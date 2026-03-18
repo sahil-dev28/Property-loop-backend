@@ -1,0 +1,40 @@
+{
+  "name": "propertyloop-backend",
+  "version": "1.0.0",
+  "description": "A property searching website, where landlord can post properties and tenant can apply for any property.",
+  "main": "src/app.js",
+  "scripts": {
+    "start": "node src/app.js",
+    "dev": "nodemon src/app.js"
+  },
+  "author": "Abhishek Kolge",
+  "license": "ISC",
+  "devDependencies": {
+    "nodemon": "^3.0.1"
+  },
+  "dependencies": {
+    "@joi/date": "^2.1.0",
+    "bcryptjs": "^2.4.3",
+    "cloudinary": "^1.41.0",
+    "cookie-parser": "^1.4.6",
+    "cors": "^2.8.5",
+    "dotenv": "^16.3.1",
+    "express": "^4.18.2",
+    "express-async-errors": "^3.1.1",
+    "express-fileupload": "^1.4.2",
+    "express-mongo-sanitize": "^2.2.0",
+    "express-rate-limit": "^7.1.4",
+    "helmet": "^7.1.0",
+    "http-status-codes": "^2.3.0",
+    "joi": "^17.11.0",
+    "joi-objectid": "^4.0.2",
+    "joi-password": "^4.1.1",
+    "jsonwebtoken": "^9.0.2",
+    "mongoose": "^8.0.0",
+    "morgan": "^1.10.0",
+    "nodemailer": "^6.9.7",
+    "otp-generator": "^4.0.1",
+    "validator": "^13.11.0",
+    "xss-clean": "^0.1.4"
+  }
+}
