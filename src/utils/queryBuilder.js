@@ -22,6 +22,19 @@ class QueryBuilder {
       delete filterObject.search;
     }
 
+    const { minPrice, maxPrice } = filterObject;
+    if (minPrice || maxPrice) {
+      this.query.find = {
+        ...this.query.find,
+        price: {
+          ...(minPrice ? { $gte: Number(minPrice) } : {}),
+          ...(maxPrice ? { $lte: Number(maxPrice) } : {}),
+        },
+      };
+      delete filterObject.minPrice;
+      delete filterObject.maxPrice;
+    }
+
     for (const key in filterObject) {
       if (Object.hasOwnProperty.call(filterObject, key)) {
         const element = filterObject[key];

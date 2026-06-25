@@ -54,7 +54,7 @@ const createProperty = async (req, res) => {
 };
 
 const getAllProperties = async (req, res) => {
-  const { search, furnishStatus, status, sort, pageNumber, pageSize } =
+  const { search, furnishStatus, status, sort, pageNumber, pageSize, minPrice, maxPrice } =
     req.query;
 
   const queryBuilder = new customUtils.QueryBuilder({
@@ -64,7 +64,7 @@ const getAllProperties = async (req, res) => {
   });
 
   const { results, totalCount, totalPages } = await queryBuilder
-    .filter({ furnishStatus, search, status })
+    .filter({ furnishStatus, search, status, minPrice, maxPrice })
     .sort(sort)
     .paginate(pageNumber || 1, pageSize || 12)
     .populate('landlord', 'name email profileImage')
@@ -108,7 +108,7 @@ const getSingleProperty = async (req, res) => {
 };
 
 const getMyProperties = async (req, res) => {
-  const { search, furnishStatus, status, sort, pageNumber, pageSize } =
+  const { search, furnishStatus, status, sort, pageNumber, pageSize, minPrice, maxPrice } =
     req.query;
   const { userId } = req.user;
 
@@ -119,7 +119,7 @@ const getMyProperties = async (req, res) => {
   });
 
   const { results, totalCount, totalPages } = await queryBuilder
-    .filter({ furnishStatus, search, status, landlord: userId })
+    .filter({ furnishStatus, search, status, minPrice, maxPrice, landlord: userId })
     .sort(sort)
     .paginate(pageNumber || 1, pageSize || 12)
     .populate('landlord', 'name email profileImage')
