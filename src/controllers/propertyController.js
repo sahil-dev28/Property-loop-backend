@@ -94,12 +94,13 @@ const getSingleProperty = async (req, res) => {
     );
   }
 
-  const ownProperty = property.landlord._id.equals(req?.user?.userId);
+  // landlord/tenant can be null when the referenced user no longer exists
+  const ownProperty = property.landlord?._id.equals(req?.user?.userId);
 
   property.owned = !!ownProperty;
 
   const isApplicationSubmitted = property.applications.find((application) => {
-    return application.tenant.equals(req?.user?.userId);
+    return application.tenant?.equals(req?.user?.userId);
   });
 
   property.isApplicationSubmitted = !!isApplicationSubmitted;
